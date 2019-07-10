@@ -113,6 +113,7 @@ namespace Wipe
             //Save settings on CTRL+C before exiting
             Console.CancelKeyPress += delegate
             {
+                Console.WriteLine("User abort.");
                 SaveSettings(S);
             };
 
