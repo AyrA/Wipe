@@ -25,8 +25,6 @@ You can't overwrite media that is currently in use by Windows.
 If you encounter a stubborn disk,
 run `diskmgmt.msc` or `diskpart.exe` and delete all partitions on said disk before wiping it.
 
-
-
 ## How to use
 
 This utility has a menu. Just double click and select the option of your choice.
