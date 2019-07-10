@@ -110,6 +110,12 @@ namespace Wipe
             var S = LoadSettings();
             var Item = MainMenu(S);
 
+            //Save settings on CTRL+C before exiting
+            Console.CancelKeyPress += delegate
+            {
+                SaveSettings(S);
+            };
+
             if (Item == null)
             {
                 SaveSettings(S);
@@ -665,7 +671,7 @@ Select an item or press [ESC] to go back
             size = Math.Abs(size);
             //Force position into 0% - 100% range.
             position = Math.Min(size, Math.Max(0.0, Math.Abs(position)));
-            
+
             //Prefer 0% over 100%
             if (position == 0.0)
             {
