@@ -45,7 +45,7 @@ namespace Wipe
             switch (DiskObject.ClassPath.ClassName)
             {
                 case "Win32_LogicalDisk":
-                    var MediaTypeInt = (uint)DiskObject.Properties["MediaType"].Value;
+                    var MediaTypeInt = (uint)Tools.IntOrDefault(DiskObject.Properties["MediaType"].Value);
                     Type = DriveType.Volume;
                     MediaType = GetMediaTypeString(MediaTypeInt);
                     if (Size == 0 && MediaType.ToLower() == "floppy")
@@ -61,8 +61,8 @@ namespace Wipe
                     //Build Model string
                     Model = string.Format("{0} {1} {2}",
                         DiskObject.Properties["DeviceID"].Value,
-                        DiskObject.Properties["FileSystem"].Value,
-                        DiskObject.Properties["VolumeName"].Value);
+                        Tools.StrOrDefault(DiskObject.Properties["FileSystem"].Value, "RAW"),
+                        Tools.StrOrDefault(DiskObject.Properties["VolumeName"].Value, "<no label>"));
                     break;
                 case "Win32_DiskDrive":
                     Type = DriveType.Physical;
